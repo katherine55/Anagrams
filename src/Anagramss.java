@@ -7,13 +7,15 @@ import java.util.Stack;
 import javax.swing.JOptionPane;
 
 public class Anagramss {
-	Stack<Character> myList = new Stack<Character>();
+	ArrayList<Character> myList = new ArrayList<Character>();
 	ArrayList<String> possibilities = new ArrayList<String>();
 	String word;
+	Scanner myScanner;
+	int length = 0;
 
 	public static void main(String[] args) throws FileNotFoundException {
-		Anagramss andy = new Anagramss();
-		andy.scrambler();
+		Anagramss myAnagram = new Anagramss();
+		myAnagram.scrambler();
 	}
 
 	void scrambler() throws FileNotFoundException {
@@ -23,18 +25,17 @@ public class Anagramss {
 			myList.add(word.charAt(i));
 		}
 
-		Scanner myScanner = new Scanner(new File("src/words.txt"));
+		myScanner = new Scanner(new File("src/words.txt"));
 		while (myScanner.hasNextLine()) {
 			String check = myScanner.nextLine();
 			for (int i = word.length() - 1; i > -1; i--) {
-				if (check.contains("" + word.charAt(i))) {
-					myList.pop();
+				if (check.contains("" + word.substring(i, i + 1))) {
+					
 				}
 			}
-			if (myList.isEmpty()) {
+			if (myList.size() == check.length()) {
 				possibilities.add(check);
 			}
-
 		}
 		System.out.println("Here are the anagrams for the word: " + word);
 		for (String x : possibilities) {
