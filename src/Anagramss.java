@@ -8,10 +8,12 @@ import javax.swing.JOptionPane;
 
 public class Anagramss {
 	ArrayList<Character> myList = new ArrayList<Character>();
+	ArrayList<Character> possibleWord = new ArrayList<Character>();
 	ArrayList<String> possibilities = new ArrayList<String>();
 	String word;
 	Scanner myScanner;
 	int length = 0;
+	boolean sameLetters = false;
 
 	public static void main(String[] args) throws FileNotFoundException {
 		Anagramss myAnagram = new Anagramss();
@@ -30,10 +32,12 @@ public class Anagramss {
 			String check = myScanner.nextLine();
 			for (int i = word.length() - 1; i > -1; i--) {
 				if (check.contains("" + word.substring(i, i + 1))) {
-					
+					length ++;
+					possibleWord.add(word.charAt(i));
 				}
 			}
-			if (myList.size() == check.length()) {
+			
+			if (myList.size() == check.length() && sameLetters) {
 				possibilities.add(check);
 			}
 		}
